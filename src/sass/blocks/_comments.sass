@@ -1,0 +1,36 @@
+.comments
+    padding-bottom: 71px
+    &__item
+        display: flex
+        position: relative
+        margin-bottom: 102px
+        &::after
+            position: absolute
+            content: ''
+            top: 276px
+            width: 940px
+            height: 1px
+            background-color: $gray-color 
+        &:last-child::after
+            display: none  
+        img
+            display: block
+            width: 169px
+            height: 169px
+            margin-right: 61px
+    &__info
+        width: 650px
+    &__name
+        color: #0d0d0d
+        font-size: 18px
+        font-weight: 700
+        margin-bottom: 10px
+    &__marafon
+        color: #646464
+        font-size: 14px
+        font-weight: 300
+        margin-bottom: 19px
+    &__descr
+        color: #0d0d0d
+        font-size: 16px
+        font-weight: 300

@@ -33,3 +33,27 @@ document.querySelector('.prev').addEventListener ('click', function () {
 document.querySelector('.next').addEventListener ('click', function () {
   slider.goTo('next');
 });
+
+const moreInfo = document.querySelectorAll('.catalog-item__more'),
+      moreInfoLink = document.querySelectorAll('.catalog-item__link'),
+      firstInfo = document.querySelectorAll('.catalog-item__first'),
+      backLink = document.querySelectorAll('.catalog-item__link_back');
+
+const changeInfo = function(i) {
+  moreInfo[i].classList.toggle('catalog-item__more_disable');
+  firstInfo[i].classList.toggle('catalog-item__first_disable');
+};
+
+moreInfoLink.forEach((item, i) => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    changeInfo(i);
+  });
+});
+
+backLink.forEach((item, i) => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    changeInfo(i);
+  });
+});
