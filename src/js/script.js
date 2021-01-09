@@ -1,21 +1,4 @@
-// $(document).ready(function(){
-//   $('.carousel__inner').slick(
-//     {
-//       speed: 300,
-//       prevArrow: '<button type="button" class="slick-prev"><img src="img/slider/arrow-left.svg"></button>',
-//       nextArrow: '<button type="button" class="slick-next"><img src="img/slider/arrow-right.svg"></button>',
-//       responsive: [
-//         {
-//           breakpoint: 768,
-//           settings: {
-//             dots: true,
-//             arrows: false
-//           }
-//         }
-//       ]
-//     }
-//   );
-// });
+
 
 const slider = tns ({
   container: '.carousel__inner',
@@ -40,8 +23,10 @@ const moreInfo = document.querySelectorAll('.catalog-item__more'),
       backLink = document.querySelectorAll('.catalog-item__link_back');
 
 const changeInfo = function(i) {
-  moreInfo[i].classList.toggle('catalog-item__more_disable');
-  firstInfo[i].classList.toggle('catalog-item__first_disable');
+  moreInfo[i].classList.toggle('hidden');
+  firstInfo[i].classList.toggle('hidden');
+  firstInfo[i].classList.add('fade');
+  moreInfo[i].classList.add('fade');
 };
 
 moreInfoLink.forEach((item, i) => {
@@ -56,4 +41,61 @@ backLink.forEach((item, i) => {
     e.preventDefault();
     changeInfo(i);
   });
+});
+
+const buttonCons = document.querySelectorAll('.button_cons'),
+      buttonBuy = document.querySelectorAll('.button_catalog'),
+      buttonFinish = document.querySelectorAll('[data-modal="finish"]'),
+      modalCons = document.querySelector('#consultation'),
+      modalClose = document.querySelectorAll('.modal__close'),
+      overlay = document.querySelector('.overlay'),
+      modalBuy = document.querySelector('#order'),
+      modalThanks = document.querySelector('#thanks'),
+      modalWin = document.querySelectorAll('.modal'),
+      modalName = document.querySelector('.modal__name'),
+      itemName = document.querySelectorAll('.catalog-item__subtitle');
+
+
+let showModal = function(btns, modal) {
+  btns.forEach((btn, i) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      let openModal = function() {
+        modal.style.display = 'block';
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        modalName.textContent = itemName[i].textContent;
+        modal.classList.add('fade');
+        };
+        openModal(modal);
+    });
+  });
+};
+
+showModal(buttonCons, modalCons);
+showModal(buttonBuy, modalBuy);
+showModal(buttonFinish, modalThanks);
+
+let closeModal = function() {
+  modalWin.forEach(modal => {
+    modal.style.display = 'none';
+  });
+  overlay.style.display = 'none';
+  document.body.style.overflow = '';
+};
+
+modalClose.forEach(item => {
+  item.addEventListener('click', () => {
+    closeModal();
+  });
+});
+
+overlay.addEventListener('click', () => {
+  closeModal();
+});
+
+document.addEventListener('keydown', (evt) => {
+  if (evt.code === 'Escape') {
+      closeModal();
+  }
 });

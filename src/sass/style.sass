@@ -7,16 +7,34 @@
 @import blocks/carousel
 @import blocks/catalog
 @import blocks/comments
+@import blocks/footer
+@import blocks/modal
 
 @import base/media
-// *
-//     font-family: 'Museo Sans', sans-serif
+*
+    font-family: 'Museo Sans', sans-serif
 
 .container
     position: relative
     margin: 0 auto
     max-width: 950px
 
+body
+    position: relative
 
 
+.visible
+    display: block
+
+.hidden
+    display: none
+
+.fade
+    animation: fade 1s
+
+@keyframes fade
+    0%
+        opacity: 0.1
+    100%
+        opacity: 1
 
