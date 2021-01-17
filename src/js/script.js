@@ -1,22 +1,3 @@
-
-
-const slider = tns ({
-  container: '.carousel__inner',
-  items: 1,
-  slideBy: 'page',
-  autoplay: false,
-  controls: false,
-  nav: false
-});
-
-document.querySelector('.prev').addEventListener ('click', function () {
-  slider.goTo('prev');
-});
-
-document.querySelector('.next').addEventListener ('click', function () {
-  slider.goTo('next');
-});
-
 const moreInfo = document.querySelectorAll('.catalog-item__more'),
       moreInfoLink = document.querySelectorAll('.catalog-item__link'),
       firstInfo = document.querySelectorAll('.catalog-item__first'),
@@ -92,12 +73,14 @@ modalClose.forEach(item => {
   });
 });
 
-overlay.addEventListener('click', () => {
-  closeModal();
+overlay.addEventListener('click', (evt) => {
+  if (evt.target === overlay || evt.target.getAttribute('data-close') == '') {
+    closeModal();
+}
 });
 
 document.addEventListener('keydown', (evt) => {
-  if (evt.code === 'Escape') {
+  if (evt.code === 'Escape' && overlay.classList.contains('visible')) {
       closeModal();
   }
 });
@@ -157,3 +140,54 @@ new ItemCard(
   '4 500 руб.',
   '.catalog .container'
 ).createCard();
+
+const slides = document.querySelectorAll('.slide'),
+        slide = document.querySelector('.carousel'),
+        prev = document.querySelector('.prev'),
+        next = document.querySelector('.next'),
+        sliderWrapper = document.querySelector('.carousel__container'),
+        sliderInner = document.querySelector('.carousel__inner'),
+        width = window.getComputedStyle(sliderWrapper).width,
+        maxOffset = +width.slice(0, width.length - 2);
+
+    let slideIndex = 1,
+        offset = 0;
+
+    slides.forEach(slide => slide.style.cssText += `
+    padding-left: 85px;
+    `);
+        
+    sliderInner.style.width = 100 * slides.length + '%';
+    slides.forEach(slide => slide.style.width = width);
+    sliderInner.style.cssText += 'display: flex; transition: all 0.3s;';
+    sliderWrapper.style.overflow = 'hidden';
+
+    next.addEventListener('click', () => {
+        if (offset == maxOffset * (slides.length - 1)) {
+            offset = 0;
+        } else {
+            offset += maxOffset;
+        }
+        sliderInner.style.transform = `translateX(-${offset}px)`;
+
+        if (slideIndex == slides.length) {
+            slideIndex = 1;
+        } else {
+            slideIndex++;
+        }
+    });
+
+    prev.addEventListener('click', () => {
+        if (offset == 0) {
+            offset = maxOffset * (slides.length - 1);
+        } else {
+            offset -= maxOffset;
+        }
+        sliderInner.style.transform = `translateX(-${offset}px)`;
+
+        if (slideIndex == 1) {
+            slideIndex = slides.length;
+        } else {
+            slideIndex--;
+        }
+    });
