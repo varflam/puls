@@ -85,61 +85,6 @@ document.addEventListener('keydown', (evt) => {
   }
 });
 
-class ItemCard {
-  constructor(src, subtitle, descr, info, oldPrice, newPrice, parentSelector, ...classes) {
-    this.src = src;
-    this.subtitle = subtitle;
-    this.descr = descr;
-    this.info = info;
-    this.oldPrice = oldPrice;
-    this.newPrice = newPrice;
-    this.parentSelector = document.querySelector(parentSelector);
-    this.classes = classes;
-  }
-
-  createCard() {
-    const element = document.createElement('div');
-    if (this.classes.length === 0) {
-      this.element = 'catalog__content';
-      element.classList.add(this.element);
-    } else {
-      this.classes.forEach (item => {
-        element.classList.add(item);
-      });
-    }
-    element.innerHTML = 
-    `<div class="catalog-item">
-      <div class="catalog-item__first visible">
-        <img src="${this.src}" alt="pulsometer" class="catalog-item__img">
-        <div class="catalog-item__subtitle">${this.subtitle}</div>
-        <div class="catalog-item__descr">${this.descr}</div>
-        <a href="#" class="catalog-item__link data-more">ПОДРОБНЕЕ</a>
-      </div>
-      <div class="catalog-item__more hidden">
-        <ul class="catalog-item__info">${this.info}</ul>
-        <a href="#" class="catalog-item__link_back">НАЗАД</a>
-      </div>
-      <div class="catalog-item__footer">
-        <div class="catalog-item__price">
-            <div class="catalog-item__old-price">${this.oldPrice}</div>
-            <div class="catalog-item__new-price">${this.newPrice}</div>
-        </div>
-      <button class="button_catalog button" data-buy>КУПИТЬ</button>
-    </div>`;
-
-      this.parentSelector.append(element);
-  }
-}
-
-new ItemCard(
-  'img/slider/clock.jpg',
-  'Пульсометр Polar FT1',
-  'Для первых шагов в тренировках, основанных на сердечном ритме',
-  'bla bla',
-  '4 750 руб.',
-  '4 500 руб.',
-  '.catalog .container'
-).createCard();
 
 const slides = document.querySelectorAll('.slide'),
         slide = document.querySelector('.carousel'),
@@ -149,13 +94,14 @@ const slides = document.querySelectorAll('.slide'),
         sliderInner = document.querySelector('.carousel__inner'),
         width = window.getComputedStyle(sliderWrapper).width,
         maxOffset = +width.slice(0, width.length - 2);
-
+        
     let slideIndex = 1,
         offset = 0;
 
     slides.forEach(slide => slide.style.cssText += `
     padding-left: 85px;
     `);
+
         
     sliderInner.style.width = 100 * slides.length + '%';
     slides.forEach(slide => slide.style.width = width);
