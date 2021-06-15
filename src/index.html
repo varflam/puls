@@ -74,7 +74,7 @@
         <div class="container">
             <h2 class="consultation__title">Получите бесплатную консультацию по подбору пульсометра</h2>
             <div class="consultation__descr"> Просто заполните форму заявки и мы перезвоним вам в течении 10 минут</div>
-            <form class="feed-form" action="#">
+            <form class="feed-form"  action="#">
                 <input name="name" type="text" placeholder="Ваше имя" required>
                 <input name="phone" type="number" placeholder="Ваш телефон" required>
                 <input name="email" type="email" placeholder="Ваш e-mail" required>
@@ -239,7 +239,7 @@
             <div class="modal__close" data-close>&times;</div>
             <div class="modal__subtitle">Просто заполните форму заявки</div>
             <div class="modal__descr">и мы вам перезвоним в течение 10 минут</div>
-            <form class="feed-form" action="#">
+            <form class="feed-form" action="POST">
                 <input name="name" type="text" placeholder="Ваше имя" required>
                 <input name="phone" type="number" placeholder="Ваш телефон" required>
                 <input name="email" type="email" placeholder="Ваш e-mail" required>
@@ -251,7 +251,7 @@
             <div class="modal__close" data-close>&times;</div>
             <div class="modal__subtitle">Ваш заказ</div>
             <div class="modal__descr modal__name"></div>
-            <form class="feed-form" action="#">
+            <form class="feed-form" action="POST">
                 <input name="name" type="text" placeholder="Ваше имя" required>
                 <input name="phone" type="number" placeholder="Ваш телефон" required>
                 <input name="email" type="email" placeholder="Ваш e-mail" required>
@@ -278,6 +278,10 @@
             </div>
         </div>
     </footer>
-  <script src="js/script.js"></script>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script src="js/jquery.validate.min.js"></script> -->
+    <script src="js/script.js"></script>
 </body>
 </html>
