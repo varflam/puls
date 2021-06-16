@@ -166,5 +166,16 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    //Page up
+
+    const pageUp = document.querySelector('.pageup');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY >= 1600) {
+        pageUp.style.display = 'block';
+      } else {
+        pageUp.style.display = 'none';
+      }
+    });
+
 });
 
